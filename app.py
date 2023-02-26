@@ -7,7 +7,7 @@ from image_resizer import image_resizer
 from video2audio import video2audio
 # from word2pdf import word2pdf
 from youtube_download import youtube_download
-from pdf2word import pdf2word
+# from pdf2word import pdf2word
 from trim_video import trim_video
 from home import home
 
@@ -54,8 +54,8 @@ def main():
 #     elif choice == "Word To PDF":
 #         word2pdf()
         
-    elif choice == "PDF To Word":
-        pdf2word()
+#     elif choice == "PDF To Word":
+#         pdf2word()
         
     elif choice == "Youtube Video Downloader":
         youtube_download()
