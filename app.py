@@ -125,20 +125,23 @@ def image_resizer():
                 # Display the resized image
                 st.image(img, caption="Resized Image", use_column_width=True)
 
-                # Create a download button for the resized image file
-                if st.button("Download Resized Image"):
-                    with open(output_filename, 'rb') as f:
-                        bytes_data = f.read()
-                    st.download_button(
-                        label="Download Resized Image",
-                        data=bytes_data,
-                        file_name=output_filename,
-                        mime="image/jpeg"
-                    )
             else:
                 st.warning("Please upload the image to resize it.")
+
+            # Create a download button for the resized image file
+            if os.path.isfile(output_filename):
+                with open(output_filename, 'rb') as f:
+                    bytes_data = f.read()
+                st.download_button(
+                    label="Download Resized Image",
+                    data=bytes_data,
+                    file_name=output_filename,
+                    mime="image/jpeg"
+                )
+
         else:
             st.warning("Please upload the image to resize it.")
+
     except Exception as e:
         st.error(f"Error: {e}")
 
