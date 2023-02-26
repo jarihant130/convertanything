@@ -9,7 +9,7 @@ import io
 import tempfile
 from io import BytesIO
 import base64
-import comtypes.client
+# import comtypes.client
 from docx2pdf import convert
 from pytube import YouTube
 import PyPDF2
@@ -143,63 +143,63 @@ def image_resizer():
         st.error(f"Error: {e}")
 
 # Function to convert docx to pdf
-def convert_to_pdf(docx_file_path, pdf_file_path):
-    try:
-        # Initialize COM library
-        comtypes.CoInitialize()
+# def convert_to_pdf(docx_file_path, pdf_file_path):
+#     try:
+#         # Initialize COM library
+#         comtypes.CoInitialize()
 
-        # Open an instance of Word
-        word = comtypes.client.CreateObject('Word.Application')
-        word.Visible = False  # Hide the Word window
+#         # Open an instance of Word
+#         word = comtypes.client.CreateObject('Word.Application')
+#         word.Visible = False  # Hide the Word window
 
-        # Open the docx file
-        docx_file = os.path.abspath(docx_file_path)
-        doc = word.Documents.Open(docx_file)
+#         # Open the docx file
+#         docx_file = os.path.abspath(docx_file_path)
+#         doc = word.Documents.Open(docx_file)
 
-        # Save the file as pdf
-        pdf_file = os.path.abspath(pdf_file_path)
-        doc.SaveAs(pdf_file, FileFormat=17)  # FileFormat=17 for PDF format
+#         # Save the file as pdf
+#         pdf_file = os.path.abspath(pdf_file_path)
+#         doc.SaveAs(pdf_file, FileFormat=17)  # FileFormat=17 for PDF format
 
-        # Close the docx file and the Word instance
-        doc.Close()
-        word.Quit()
+#         # Close the docx file and the Word instance
+#         doc.Close()
+#         word.Quit()
 
-        # Uninitialize COM library
-        comtypes.CoUninitialize()
-    except Exception as e:
-        st.error(f"Error: {e}")
+#         # Uninitialize COM library
+#         comtypes.CoUninitialize()
+#     except Exception as e:
+#         st.error(f"Error: {e}")
     
-def word2pdf():
-    st.title("Convert Word to PDF")
-    st.subheader("Welcome to Word Document to PDF Converter!")
-    st.write("This is a simple application that convert word document to PDF.")
-    try:
-        # File uploader
-        uploaded_file = st.file_uploader("Upload a Word document", type=["docx"])
+# def word2pdf():
+#     st.title("Convert Word to PDF")
+#     st.subheader("Welcome to Word Document to PDF Converter!")
+#     st.write("This is a simple application that convert word document to PDF.")
+#     try:
+#         # File uploader
+#         uploaded_file = st.file_uploader("Upload a Word document", type=["docx"])
 
-        if uploaded_file is not None:
-            # Ask user for output file name
-            output_file_name = st.text_input("Output file name", "output.pdf")
+#         if uploaded_file is not None:
+#             # Ask user for output file name
+#             output_file_name = st.text_input("Output file name", "output.pdf")
 
-            if st.button("Convert to PDF"):
-                # Convert Word to PDF
-                convert_to_pdf(uploaded_file.name, output_file_name)
+#             if st.button("Convert to PDF"):
+#                 # Convert Word to PDF
+#                 convert_to_pdf(uploaded_file.name, output_file_name)
 
-                # Show success message
-                st.success("Conversion successful!")
+#                 # Show success message
+#                 st.success("Conversion successful!")
 
-                if st.button("Download PDF"):
-                    # Download link for the PDF file
-                    with open(output_file_name, "rb") as f:
-                        bytes = f.read()
-                        st.download_button(label="Download PDF", data=bytes, file_name=output_file_name)
-                # Show download success message
-                st.success("Your PDF file has been downloaded successful!")
+#                 if st.button("Download PDF"):
+#                     # Download link for the PDF file
+#                     with open(output_file_name, "rb") as f:
+#                         bytes = f.read()
+#                         st.download_button(label="Download PDF", data=bytes, file_name=output_file_name)
+#                 # Show download success message
+#                 st.success("Your PDF file has been downloaded successful!")
 
-        else:
-            st.warning("Please upload a word document file")            
-    except Exception as e:
-        st.error(f"Error: {e}")
+#         else:
+#             st.warning("Please upload a word document file")            
+#     except Exception as e:
+#         st.error(f"Error: {e}")
         
 def pdf2word():
     st.title("Convert PDF to WORD")
@@ -332,7 +332,9 @@ def main():
     # Create a sidebar with a menu
     menu = ["Home", 
 #             "Image to Sketch", 
-            "Image To PDF" , "Rotate Image", "Trim Video", "Crop Image", "Image Resizer", "Word To PDF", "PDF To Word", "Youtube Video Downloader", "Video To Audio"]
+            "Image To PDF" , "Rotate Image", "Trim Video", "Crop Image", "Image Resizer", 
+#             "Word To PDF", 
+            "PDF To Word", "Youtube Video Downloader", "Video To Audio"]
     choice = st.sidebar.selectbox("Select an option", menu)
 
     # Show the appropriate page based on the user's menu choice
