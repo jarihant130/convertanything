@@ -1,9 +1,6 @@
 import streamlit as st
 import string
 
-# Set page config for entire app
-st.set_page_config(page_title="Linux Commands", page_icon=":penguin:", layout="wide")
-
 # Define the commands for each alphabet page
 commands = {
     "A": {
