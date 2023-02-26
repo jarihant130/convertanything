@@ -21,7 +21,7 @@ def main():
             "Crop Image", #crop_image.py
             "Image Resizer", #image_resizer.py
 #             "Word To PDF", #word2pdf.py
-            "PDF To Word", #pdf2word.py
+#             "PDF To Word", #pdf2word.py
             "Youtube Video Downloader", #youtube_download.py
             "Video To Audio", #video2audio.py
            "Linux Commands" #linux_cmd.py
