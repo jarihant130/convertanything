@@ -12,6 +12,7 @@ from trim_video import trim_video
 from home import home
 from onlinePyCompiler import compiler_app
 from password_generator import password_generator
+from video2gif import video2gif
 
 def main():
     st.set_page_config(page_title="Convert Anything!!", page_icon=":pencil2:", layout="wide")
@@ -30,12 +31,16 @@ def main():
            "Linux Commands", #linux_cmd.py
             "Online Python Compiler", #onlinePyCompiler.py
             "Password Generator", #password_generator.py
+            "Video To GIF", #video2gif.py
            ]
     choice = st.sidebar.selectbox("Select an option", menu)
-
+    st.sidebar.markdown('''
+        ---
+        Made with ❤️ by Arihant Jain ([Study Material](https://www.youtube.com/channel/UCeC088dyJsXK_L1bCHZDcjA))
+        ''')
+    
     # Show the appropriate page based on the user's menu choice
     if choice == "Home":
-        
         home()
         
 #     elif choice == "Image to Sketch":
@@ -74,6 +79,7 @@ def main():
         compiler_app()
     elif choice == "Password Generator":
         password_generator()
-
+    elif choice == "Video To GIF":
+        video2gif()
 if __name__ == "__main__":
     main()
