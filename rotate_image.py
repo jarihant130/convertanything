@@ -29,4 +29,4 @@ def rotate_image():
             file_name="rotated.png",
             mime="image/png")
     else:
-        st.warning("Please click the image to rotate it.")
+        st.warning("Please upload an image file first!")

@@ -11,8 +11,8 @@ def crop_image():
     uploaded_file = st.file_uploader("Choose an image file", type=["jpg", "jpeg", "png"])
     
     # If the user has uploaded a file, display it and allow them to crop it
-    if uploaded_file is not None:
-        try:
+    try:
+        if uploaded_file is not None:
             # Load the image using PIL
             image = Image.open(uploaded_file)
 
@@ -43,6 +43,8 @@ def crop_image():
                 b64 = base64.b64encode(output.getvalue()).decode()
                 href = f'<a href="data:application/octet-stream;base64,{b64}" download="cropped_image.jpeg">Download Image</a>'
                 st.markdown(href, unsafe_allow_html=True)
-        except Exception as e:
+        
+        else:
+            st.warning("Please upload an image file first!")
+    except Exception as e:
             st.error(f"Error: {e}")
-
