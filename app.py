@@ -259,28 +259,54 @@ def youtube_download():
     st.title("YouTube Video Downloader")
     st.subheader("Welcome to YouTube Video Downloader!")
     st.write("This is a simple application that download YouTube videos for you using PyTube.")
+    
     # Ask user for YouTube video URL
     url = st.text_input("Enter the YouTube video URL:")
+    
     try:
         # Create a YouTube object and get the available resolutions
         if url:
             yt = YouTube(url)
-            streams = yt.streams.filter(progressive=True)
+            streams = yt.streams.filter(file_extension='mp4', type='video')
 
             # Display available resolutions to user
-            res_options = [stream.resolution for stream in streams]
-            res_choice = st.selectbox("Select resolution:", res_options)
+            res_options = [f"{stream.resolution} ({stream.mime_type.split('/')[1]})" for stream in streams]
+            res_choice = st.selectbox("Select video quality:", res_options)
 
             # Find video stream with selected resolution
             video = None
             for stream in streams:
-                if stream.resolution == res_choice:
+                if f"{stream.resolution} ({stream.mime_type.split('/')[1]})" == res_choice:
                     video = stream
-
+            
             # Download video when user clicks button
-            if video and st.button("Download"):
-                video.download()
-                st.success("Video downloaded successfully!")
+            if st.button("Download"):
+                if video:
+                    # Get video title and create output filename
+                    title = yt.title.replace("|", "-").replace(":", "-")
+                    filename = f"{title}_{res_choice.split()[0]}.mp4"
+                    
+                    # Download video to a temporary file
+                    with st.spinner(f"Downloading '{filename}'..."):
+                        tmp_filename = video.download()
+
+                    # Prompt user to save the downloaded file
+                    with open(tmp_filename, "rb") as f:
+                        bytes_data = f.read()
+                    st.write(f"Do you want to {title}.mp4 download?")
+                    st.download_button(
+                        label="Download Video",
+                        data=bytes_data,
+                        file_name=filename,
+                        mime="video/mp4"
+                    )
+
+                    # Delete the temporary file
+                    os.remove(tmp_filename)
+                    
+                    st.success("Video downloaded successfully!")
+                else:
+                    st.warning("Please select a video quality first!")
     except Exception as e:
         st.error(f"Error: {e}")
 
