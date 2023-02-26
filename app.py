@@ -1,4 +1,4 @@
-import cv2
+# import cv2
 import streamlit as st
 from PIL import Image
 import numpy as np
@@ -16,20 +16,20 @@ import PyPDF2
 import docx
 import img2pdf
 
-def converter(image, ksize, sigma):
-    # Convert to grayscale
-    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+# def converter(image, ksize, sigma):
+#     # Convert to grayscale
+#     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-    # Invert the image
-    inverted_image = 255 - gray_image
+#     # Invert the image
+#     inverted_image = 255 - gray_image
 
-    # Apply a Gaussian blur to the inverted image
-    blurred_image = cv2.GaussianBlur(inverted_image, ksize, sigma)
+#     # Apply a Gaussian blur to the inverted image
+#     blurred_image = cv2.GaussianBlur(inverted_image, ksize, sigma)
 
-    # Blend the grayscale image with the blurred inverted image using the "color dodge" blend mode
-    sketch_image = cv2.divide(gray_image, 255 - blurred_image, scale=256)
+#     # Blend the grayscale image with the blurred inverted image using the "color dodge" blend mode
+#     sketch_image = cv2.divide(gray_image, 255 - blurred_image, scale=256)
 
-    return sketch_image
+#     return sketch_image
 
 def rotate_image(image, angle):
     # Rotate the image
