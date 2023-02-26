@@ -288,14 +288,23 @@ def image_to_pdf():
             output_file_name = st.text_input("Output file name", "output.pdf")
 
             if st.button("Convert to PDF"):
-                if uploaded_file is None:
-                    st.warning("Please upload an image file first!")
-                else:
-                    with open(uploaded_file.name, 'rb') as f:
-                        with open(output_file_name, 'wb') as out:
-                            out.write(img2pdf.convert(f))
-
-                    st.success("Your PDF file has been created successfully!")
+                with open(output_file_name, 'wb') as out:
+                    out.write(img2pdf.convert(uploaded_file))
+                st.success("Your PDF file has been created successfully!")
+                
+                try:
+                    with open(output_file_name, 'rb') as f:
+                        bytes_data = f.read()
+                        st.download_button(
+                            label="Download PDF",
+                            data=bytes_data,
+                            file_name=output_file_name
+                        )
+                except FileNotFoundError:
+                    st.warning("PDF file not found. Please convert your image to PDF first.")
+                          
+        else:
+            st.warning("Please upload an image file first!")
                           
     except Exception as e:
         st.error(f"Error: {e}")
