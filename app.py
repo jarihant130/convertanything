@@ -267,48 +267,66 @@ def youtube_download():
         # Create a YouTube object and get the available resolutions
         if url:
             yt = YouTube(url)
-            streams = yt.streams.filter(file_extension='mp4', type='video')
+            streams = yt.streams.filter(progressive=True, file_extension='mp4').order_by('resolution').desc()
 
             # Display available resolutions to user
-            res_options = [f"{stream.resolution} ({stream.mime_type.split('/')[1]})" for stream in streams]
-            res_choice = st.selectbox("Select video quality:", res_options)
+            options = []
+            for stream in streams:
+                if stream.includes_audio_track:
+                    label = f"{stream.resolution} ({stream.mime_type.split('/')[1]})"
+                    options.append(label)
+                else:
+                    mute_icon = Image.open("mute.png")
+                    label = f"{stream.resolution} ({stream.mime_type.split('/')[1]}) [MUTED]"
+                    options.append((label, mute_icon))
+            
+            res_choice = st.selectbox("Select video quality:", options)
 
             # Find video stream with selected resolution
             video = None
+            audio = None
             for stream in streams:
-                if f"{stream.resolution} ({stream.mime_type.split('/')[1]})" == res_choice:
-                    video = stream
+                if f"{stream.resolution} ({stream.mime_type.split('/')[1]})" in res_choice:
+                    if stream.includes_audio_track:
+                        video = stream
+                        audio = stream
+                    else:
+                        st.warning("Selected stream does not include audio. Please choose a different stream.")
+                        return
             
-            # Download video when user clicks button
-            if st.button("Download"):
-                if video:
+            # Download video with audio when user clicks button
+            if st.button("Download Video"):
+                if video and audio:
                     # Get video title and create output filename
                     title = yt.title.replace("|", "-").replace(":", "-")
                     filename = f"{title}_{res_choice.split()[0]}.mp4"
                     
                     # Download video to a temporary file
                     with st.spinner(f"Downloading '{filename}'..."):
-                        tmp_filename = video.download()
-
+                        video_path = video.download()
+                        audio_path = audio.download()
+                        os.system(f"ffmpeg -i \"{video_path}\" -i \"{audio_path}\" -c:v copy -c:a copy \"{filename}\"")
+                    
                     # Prompt user to save the downloaded file
-                    with open(tmp_filename, "rb") as f:
+                    with open(video_path, "rb") as f:
                         bytes_data = f.read()
-                    st.write(f"Do you want to {title}.mp4 download?")
+                    st.write(f"Do you want to download {title}.mp4?")
                     st.download_button(
                         label="Download Video",
                         data=bytes_data,
-                        file_name=filename,
+                        file_name=video_path,
                         mime="video/mp4"
                     )
 
-                    # Delete the temporary file
-                    os.remove(tmp_filename)
+                    # Delete the temporary files
+                    os.remove(video_path)
+                    os.remove(audio_path)
                     
                     st.success("Video downloaded successfully!")
                 else:
-                    st.warning("Please select a video quality first!")
+                    st.warning("Please select a video quality that includes audio!")
     except Exception as e:
-        st.error(f"Error: {e}")
+        pass
 
 
 def image_to_pdf():
