@@ -1,8 +1,11 @@
 import random
 import string
+import re
 import streamlit as st
 
-def generate_password(length, include_symbols=True, include_numbers=True, include_lowercase=True, include_uppercase=True, exclude_similar=True, exclude_ambiguous=True):
+def generate_password(length: int, include_symbols: bool = True, include_numbers: bool = True,
+                      include_lowercase: bool = True, include_uppercase: bool = True,
+                      exclude_similar: bool = True, exclude_ambiguous: bool = True) -> str:
     # Define character sets
     symbols = "@#$%&*-_+=?"
     numbers = "1234567890"
@@ -40,22 +43,24 @@ def generate_password(length, include_symbols=True, include_numbers=True, includ
         password += random.choice(char_set)
 
     return password
+
+
 def password_generator():
     # Create a Streamlit app
     st.title("Password Generator")
-    st.sidebar.header("Password Options")
+    st.header("Password Options")
 
     # Get user input
-    length = st.sidebar.slider("Password Length", 6, 2048, 12, 1)
-    include_symbols = st.sidebar.checkbox("Include Symbols")
-    include_numbers = st.sidebar.checkbox("Include Numbers")
-    include_lowercase = st.sidebar.checkbox("Include Lowercase Characters")
-    include_uppercase = st.sidebar.checkbox("Include Uppercase Characters")
-    exclude_similar = st.sidebar.checkbox("Exclude Similar Characters")
-    exclude_ambiguous = st.sidebar.checkbox("Exclude Ambiguous Characters")
+    length = st.slider("Password Length", 6, 2048, 12, 1)
+    include_symbols = st.checkbox("Include Symbols")
+    include_numbers = st.checkbox("Include Numbers")
+    include_lowercase = st.checkbox("Include Lowercase Characters")
+    include_uppercase = st.checkbox("Include Uppercase Characters")
+    exclude_similar = st.checkbox("Exclude Similar Characters")
+    exclude_ambiguous = st.checkbox("Exclude Ambiguous Characters")
 
     # Generate and print password
-    if st.sidebar.button("Generate Password"):
+    if st.button("Generate Password"):
         password = generate_password(length, include_symbols, include_numbers, include_lowercase, include_uppercase, exclude_similar, exclude_ambiguous)
         
         # Calculate the number of lines needed to display the password
@@ -67,3 +72,4 @@ def password_generator():
         # Display the generated password
         st.text_area("Generated Password: ", value=password, height=height)
 
+# password_generator()
