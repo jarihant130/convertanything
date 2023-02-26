@@ -30,7 +30,7 @@ def main():
 
     # Show the appropriate page based on the user's menu choice
     if choice == "Home":
-        st.set_page_config(page_title="Convert Anything!!", page_icon=":pencil2:", layout="wide")
+#         st.set_page_config(page_title="Convert Anything!!", page_icon=":pencil2:", layout="wide")
         home()
         
 #     elif choice == "Image to Sketch":
