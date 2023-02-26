@@ -1,4 +1,4 @@
-# import cv2
+import cv2
 import streamlit as st
 from PIL import Image
 import numpy as np
@@ -16,20 +16,20 @@ import PyPDF2
 import docx
 import img2pdf
 
-# def converter(image, ksize, sigma):
-#     # Convert to grayscale
-#     gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
+def converter(image, ksize, sigma):
+    # Convert to grayscale
+    gray_image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-#     # Invert the image
-#     inverted_image = 255 - gray_image
+    # Invert the image
+    inverted_image = 255 - gray_image
 
-#     # Apply a Gaussian blur to the inverted image
-#     blurred_image = cv2.GaussianBlur(inverted_image, ksize, sigma)
+    # Apply a Gaussian blur to the inverted image
+    blurred_image = cv2.GaussianBlur(inverted_image, ksize, sigma)
 
-#     # Blend the grayscale image with the blurred inverted image using the "color dodge" blend mode
-#     sketch_image = cv2.divide(gray_image, 255 - blurred_image, scale=256)
+    # Blend the grayscale image with the blurred inverted image using the "color dodge" blend mode
+    sketch_image = cv2.divide(gray_image, 255 - blurred_image, scale=256)
 
-#     return sketch_image
+    return sketch_image
 
 def rotate_image(image, angle):
     # Rotate the image
@@ -143,63 +143,63 @@ def image_resizer():
         st.error(f"Error: {e}")
 
 # Function to convert docx to pdf
-# def convert_to_pdf(docx_file_path, pdf_file_path):
-#     try:
-#         # Initialize COM library
-#         comtypes.CoInitialize()
+def convert_to_pdf(docx_file_path, pdf_file_path):
+    try:
+        # Initialize COM library
+        comtypes.CoInitialize()
 
-#         # Open an instance of Word
-#         word = comtypes.client.CreateObject('Word.Application')
-#         word.Visible = False  # Hide the Word window
+        # Open an instance of Word
+        word = comtypes.client.CreateObject('Word.Application')
+        word.Visible = False  # Hide the Word window
 
-#         # Open the docx file
-#         docx_file = os.path.abspath(docx_file_path)
-#         doc = word.Documents.Open(docx_file)
+        # Open the docx file
+        docx_file = os.path.abspath(docx_file_path)
+        doc = word.Documents.Open(docx_file)
 
-#         # Save the file as pdf
-#         pdf_file = os.path.abspath(pdf_file_path)
-#         doc.SaveAs(pdf_file, FileFormat=17)  # FileFormat=17 for PDF format
+        # Save the file as pdf
+        pdf_file = os.path.abspath(pdf_file_path)
+        doc.SaveAs(pdf_file, FileFormat=17)  # FileFormat=17 for PDF format
 
-#         # Close the docx file and the Word instance
-#         doc.Close()
-#         word.Quit()
+        # Close the docx file and the Word instance
+        doc.Close()
+        word.Quit()
 
-#         # Uninitialize COM library
-#         comtypes.CoUninitialize()
-#     except Exception as e:
-#         st.error(f"Error: {e}")
+        # Uninitialize COM library
+        comtypes.CoUninitialize()
+    except Exception as e:
+        st.error(f"Error: {e}")
     
-# def word2pdf():
-#     st.title("Convert Word to PDF")
-#     st.subheader("Welcome to Word Document to PDF Converter!")
-#     st.write("This is a simple application that convert word document to PDF.")
-#     try:
-#         # File uploader
-#         uploaded_file = st.file_uploader("Upload a Word document", type=["docx"])
+def word2pdf():
+    st.title("Convert Word to PDF")
+    st.subheader("Welcome to Word Document to PDF Converter!")
+    st.write("This is a simple application that convert word document to PDF.")
+    try:
+        # File uploader
+        uploaded_file = st.file_uploader("Upload a Word document", type=["docx"])
 
-#         if uploaded_file is not None:
-#             # Ask user for output file name
-#             output_file_name = st.text_input("Output file name", "output.pdf")
+        if uploaded_file is not None:
+            # Ask user for output file name
+            output_file_name = st.text_input("Output file name", "output.pdf")
 
-#             if st.button("Convert to PDF"):
-#                 # Convert Word to PDF
-#                 convert_to_pdf(uploaded_file.name, output_file_name)
+            if st.button("Convert to PDF"):
+                # Convert Word to PDF
+                convert_to_pdf(uploaded_file.name, output_file_name)
 
-#                 # Show success message
-#                 st.success("Conversion successful!")
+                # Show success message
+                st.success("Conversion successful!")
 
-#                 if st.button("Download PDF"):
-#                     # Download link for the PDF file
-#                     with open(output_file_name, "rb") as f:
-#                         bytes = f.read()
-#                         st.download_button(label="Download PDF", data=bytes, file_name=output_file_name)
-#                 # Show download success message
-#                 st.success("Your PDF file has been downloaded successful!")
+                if st.button("Download PDF"):
+                    # Download link for the PDF file
+                    with open(output_file_name, "rb") as f:
+                        bytes = f.read()
+                        st.download_button(label="Download PDF", data=bytes, file_name=output_file_name)
+                # Show download success message
+                st.success("Your PDF file has been downloaded successful!")
 
-#         else:
-#             st.warning("Please upload a word document file")            
-#     except Exception as e:
-#         st.error(f"Error: {e}")
+        else:
+            st.warning("Please upload a word document file")            
+    except Exception as e:
+        st.error(f"Error: {e}")
         
 def pdf2word():
     st.title("Convert PDF to WORD")
@@ -272,7 +272,8 @@ def youtube_download():
                 st.success("Video downloaded successfully!")
     except Exception as e:
         st.error(f"Error: {e}")
-                
+
+
 def image_to_pdf():
     """Convert an image file to a PDF file."""
     st.title("Convert Image To PDF")
@@ -309,6 +310,8 @@ def image_to_pdf():
     except Exception as e:
         st.error(f"Error: {e}")
 
+
+
 def video2audio():
     st.title("Convert Video To Audio")
     st.subheader("Welcome to Video To Audio Converter!")
@@ -323,16 +326,32 @@ def video2audio():
                 if uploaded_file is None:
                     st.warning("Please upload a video file first!")
                 else:
-                    video = mp.VideoFileClip(uploaded_file.name)
                     file_name = uploaded_file.name
                     if file_name.endswith(".mp4") or file_name.endswith(".mkv") or file_name.endswith(".mov") or file_name.endswith(".avi"):
-                        video.audio.write_audiofile(f"{uploaded_file.name.split('.')[0]}.mp3")
-                        st.success("Your Audio file has been saved successfully!")
+                        with tempfile.NamedTemporaryFile(suffix=".mp3", delete=False) as tmp_file:
+                            # Convert video to audio and save to temporary file
+                            video = mp.VideoFileClip(uploaded_file.name)
+                            audio = video.audio
+                            audio.write_audiofile(tmp_file.name)
+                            
+                            # Download the converted audio file when the user clicks the download button
+                            if st.button("Download Audio"):
+                                with open(tmp_file.name, 'rb') as f:
+                                    bytes_data = f.read()
+                                    st.download_button(
+                                        label="Download Audio",
+                                        data=bytes_data,
+                                        file_name=f"{file_name.split('.')[0]}.mp3"
+                                    )
+                            st.success("Your Audio file has been created successfully!")
                     else:
                         st.warning("Please upload a valid video file with .mp4, .mkv, .mov or .avi extension.")
-                          
+
     except Exception as e:
         st.error(f"Error: {e}")
+
+
+
 
         
 def main():
