@@ -10,6 +10,8 @@ from youtube_download import youtube_download
 # from pdf2word import pdf2word
 from trim_video import trim_video
 from home import home
+from onlinePyCompiler import compiler_app
+from password_generator import password_generator
 
 def main():
     st.set_page_config(page_title="Convert Anything!!", page_icon=":pencil2:", layout="wide")
@@ -25,7 +27,9 @@ def main():
 #             "PDF To Word", #pdf2word.py
             "Youtube Video Downloader", #youtube_download.py
             "Video To Audio", #video2audio.py
-           "Linux Commands" #linux_cmd.py
+           "Linux Commands", #linux_cmd.py
+            "Online Python Compiler", #onlinePyCompiler.py
+            "Password Generator", #password_generator.py
            ]
     choice = st.sidebar.selectbox("Select an option", menu)
 
@@ -66,7 +70,10 @@ def main():
         
     elif choice == "Linux Commands":
         alphabet_selector()
-
+    elif choice == "Online Python Compiler":
+        compiler_app()
+    elif choice == "Password Generator":
+        password_generator()
 
 if __name__ == "__main__":
     main()
