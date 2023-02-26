@@ -9,5 +9,5 @@ Pillow==9.4.0
 comtypes==1.1.14
 pytube==12.1.2
 img2pdf==0.4.4
-libgl1-mesa-glx
+libgl1-mesa-glx==18.3.6
 
