@@ -5,7 +5,7 @@ from crop_image import crop_image
 from image_to_pdf import image_to_pdf
 from image_resizer import image_resizer
 from video2audio import video2audio
-from word2pdf import word2pdf
+# from word2pdf import word2pdf
 from youtube_download import youtube_download
 from pdf2word import pdf2word
 from trim_video import trim_video
