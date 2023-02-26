@@ -12,6 +12,7 @@ from trim_video import trim_video
 from home import home
 
 def main():
+    st.set_page_config(page_title="Convert Anything!!", page_icon=":pencil2:", layout="wide")
     # Create a sidebar with a menu
     menu = ["Home", #home.py
 #             "Image to Sketch", #image2sketch.py
@@ -30,7 +31,7 @@ def main():
 
     # Show the appropriate page based on the user's menu choice
     if choice == "Home":
-#         st.set_page_config(page_title="Convert Anything!!", page_icon=":pencil2:", layout="wide")
+        
         home()
         
 #     elif choice == "Image to Sketch":
