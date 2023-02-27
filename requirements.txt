@@ -11,3 +11,4 @@ pytube
 img2pdf
 pydub
 exception
+speedtest-cli
