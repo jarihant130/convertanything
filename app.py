@@ -14,6 +14,8 @@ from onlinePyCompiler import compiler_app
 from password_generator import password_generator
 from video2gif import video2gif
 from image2sketch import image2sketch
+from speed_test import test_speed
+
 def main():
     st.set_page_config(page_title="Convert Anything!!", page_icon=":pencil2:", layout="wide")
     # Create a sidebar with a menu
@@ -32,6 +34,7 @@ def main():
             "Online Python Compiler", #onlinePyCompiler.py
             "Password Generator", #password_generator.py
             "Video To GIF", #video2gif.py
+            "Speed Test", #speed_test.py
            ]
     choice = st.sidebar.selectbox("Select an option", menu)
     st.sidebar.markdown('''
@@ -79,5 +82,7 @@ def main():
         password_generator()
     elif choice == "Video To GIF":
         video2gif()
+    elif choice == "Speed Test":
+        test_speed()
 if __name__ == "__main__":
     main()
