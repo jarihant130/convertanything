@@ -18,7 +18,7 @@ def main():
     st.set_page_config(page_title="Convert Anything!!", page_icon=":pencil2:", layout="wide")
     # Create a sidebar with a menu
     menu = ["Home", #home.py
-#             "Image to Sketch", #image2sketch.py
+            "Image to Sketch", #image2sketch.py
             "Image To PDF" , #image_to_pdf.py
             "Rotate Image", #rotate_image.py
 #             "Trim Video", #trim_video.py
@@ -43,8 +43,8 @@ def main():
     if choice == "Home":
         home()
         
-#     elif choice == "Image to Sketch":
-#         image2sketch()
+    elif choice == "Image to Sketch":
+        image2sketch()
 
     elif choice == "Image To PDF":
         image_to_pdf()
