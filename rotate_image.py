@@ -1,9 +1,10 @@
 import streamlit as st
 from PIL import Image
+from io import BytesIO
+import base64
 
 def rotate_image():
     # Rotate the image
-#     rotated_image = image.rotate(angle, resample=Image.BICUBIC, expand=True)
     st.subheader("Welcome to Image Rotator!")
     st.write("This is a simple application that rotates an image by the specified angle.")
 
@@ -21,12 +22,14 @@ def rotate_image():
 
         # Show the rotated image
         st.image(rotated_image, caption="Rotated Image", use_column_width=True)
+        output_file_name = "rotated_" + uploaded_file.name + ".png"
 
-        # Add a button to download the rotated image
-        st.download_button(
-            label="Download Rotated Image",
-            data=rotated_image.tobytes(),
-            file_name="rotated.png",
-            mime="image/png")
+        # Add a "Download" button to allow the user to download the cropped image
+        with BytesIO() as output:
+            rotated_image.save(output, format='PNG')
+            b64 = base64.b64encode(output.getvalue()).decode()
+            href = f'<a href="data:application/octet-stream;base64,{b64}" download="rotated_image.png">Download Image</a>'
+            st.markdown(href, unsafe_allow_html=True)
+    
     else:
         st.warning("Please upload an image file first!")

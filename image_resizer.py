@@ -1,6 +1,8 @@
 import streamlit as st
 from PIL import Image
 import os
+from io import BytesIO
+import base64
 
 def image_resizer():
     # Set page header
@@ -31,10 +33,16 @@ def image_resizer():
                 # Save the resized image with the user-specified filename and extension
                 filename, extension = os.path.splitext(uploaded_file.name)
                 output_filename = output_filename + extension
-                img.save(output_filename)
+#                 img.save(output_filename)
 
                 # Display the resized image
                 st.image(img, caption="Resized Image", use_column_width=True)
+                # Add a "Download" button to allow the user to download the cropped image
+                with BytesIO() as output:
+                    img.save(output, format=extension[1:])
+                    b64 = base64.b64encode(output.getvalue()).decode()
+                    href = f'<a href="data:application/octet-stream;base64,{b64}" download={output_filename}>Download Image</a>'
+                    st.markdown(href, unsafe_allow_html=True)
 
             else:
                 st.warning("Please upload the image to resize it.")

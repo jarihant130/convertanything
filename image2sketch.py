@@ -2,6 +2,8 @@ import cv2
 import streamlit as st
 from PIL import Image
 import numpy as np
+from io import BytesIO
+import base64
 
 def converter(image, ksize, sigma):
     # Convert to grayscale
@@ -46,16 +48,17 @@ def image2sketch():
 
         # Show the sketch image
         st.image(sketch_image_pil, caption="Sketch Image", use_column_width=True)
+        output_file = st.text_input("Output file name", "output.png")
 
         # Save the sketch image as a PNG file
-        sketch_image_pil.save("sketch.png")
+        
+        # Add a "Download" button to allow the user to download the cropped image
+        with BytesIO() as output:
+            sketch_image_pil.save(output, format='PNG')
+            b64 = base64.b64encode(output.getvalue()).decode()
+            href = f'<a href="data:application/octet-stream;base64,{b64}" download={output_file}>Download Image</a>'
+            st.markdown(href, unsafe_allow_html=True)
 
-        # Add a button to download the sketch image
-        st.download_button(
-        label="Download Sketch Image",
-        data=open("sketch.png", "rb").read(),
-        file_name="sketch.png",
-        mime="image/png")
     else:
         st.warning("Please click the image to convert it to a sketch.")
-        
+            
