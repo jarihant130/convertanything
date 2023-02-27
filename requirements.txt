@@ -3,7 +3,7 @@ opencv-python-headless
 streamlit==1.18.1
 moviepy==1.0.3
 docx2pdf==0.1.8
-docx==0.2.4
+docx
 PyPDF2==3.0.1
 Pillow==9.4.0
 comtypes==1.1.14
