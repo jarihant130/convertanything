@@ -34,7 +34,7 @@ def main():
             "Online Python Compiler", #onlinePyCompiler.py
             "Password Generator", #password_generator.py
             "Video To GIF", #video2gif.py
-            "Speed Test", #speed_test.py
+#             "Speed Test", #speed_test.py
            ]
     choice = st.sidebar.selectbox("Select an option", menu)
     st.sidebar.markdown('''
@@ -82,7 +82,7 @@ def main():
         password_generator()
     elif choice == "Video To GIF":
         video2gif()
-    elif choice == "Speed Test":
-        test_speed()
+#     elif choice == "Speed Test":
+#         test_speed()
 if __name__ == "__main__":
     main()
