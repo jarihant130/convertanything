@@ -13,7 +13,7 @@ from home import home
 from onlinePyCompiler import compiler_app
 from password_generator import password_generator
 from video2gif import video2gif
-
+from image2sketch import image2sketch
 def main():
     st.set_page_config(page_title="Convert Anything!!", page_icon=":pencil2:", layout="wide")
     # Create a sidebar with a menu
