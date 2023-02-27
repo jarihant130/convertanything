@@ -5,7 +5,7 @@ from crop_image import crop_image
 from image_to_pdf import image_to_pdf
 from image_resizer import image_resizer
 from video2audio import video2audio
-from word2pdf import word2pdf
+# from word2pdf import word2pdf
 from youtube_download import youtube_download
 # from pdf2word import pdf2word
 from trim_video import trim_video
@@ -24,7 +24,7 @@ def main():
 #             "Trim Video", #trim_video.py
             "Crop Image", #crop_image.py
             "Image Resizer", #image_resizer.py
-            "Word To PDF", #word2pdf.py
+#             "Word To PDF", #word2pdf.py
 #             "PDF To Word", #pdf2word.py
             "Youtube Video Downloader", #youtube_download.py
             "Video To Audio", #video2audio.py
@@ -61,8 +61,8 @@ def main():
 #     elif choice == "Trim Video":
 #         trim_video()
         
-    elif choice == "Word To PDF":
-        word2pdf()
+#     elif choice == "Word To PDF":
+#         word2pdf()
         
 #     elif choice == "PDF To Word":
 #         pdf2word()
