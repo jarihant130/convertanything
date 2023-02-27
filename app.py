@@ -43,15 +43,13 @@ def main():
     if choice == "Home":
         home()
         
-    elif choice == "Image to Sketch":
-        image2sketch()
-
     elif choice == "Image To PDF":
         image_to_pdf()
         
     elif choice == "Rotate Image":
         rotate_image()
-
+    elif choice == "Image to Sketch":
+        image2sketch()
     elif choice == "Crop Image":
         crop_image()
         
