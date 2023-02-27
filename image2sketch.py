@@ -59,4 +59,3 @@ def image2sketch():
     else:
         st.warning("Please click the image to convert it to a sketch.")
         
-image2sketch()    
