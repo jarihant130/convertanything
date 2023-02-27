@@ -10,4 +10,4 @@ comtypes==1.1.14
 pytube==12.1.2
 img2pdf==0.4.4
 pydub
-
+exception
