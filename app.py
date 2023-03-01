@@ -23,7 +23,7 @@ def main():
             "Image to Sketch", #image2sketch.py
             "Image To PDF" , #image_to_pdf.py
             "Rotate Image", #rotate_image.py
-#             "Trim Video", #trim_video.py
+            "Trim Video", #trim_video.py
             "Crop Image", #crop_image.py
             "Image Resizer", #image_resizer.py
 #             "Word To PDF", #word2pdf.py
@@ -59,8 +59,12 @@ def main():
     elif choice == "Image Resizer":
         image_resizer()
     
-#     elif choice == "Trim Video":
-#         trim_video()
+    elif choice == "Trim Video":
+        trim_video()
+    elif choice == "Video To GIF":
+        video2gif()
+    elif choice == "Video To Audio":
+        video2audio()
         
 #     elif choice == "Word To PDF":
 #         word2pdf()
@@ -70,18 +74,13 @@ def main():
         
     elif choice == "Youtube Video Downloader":
         youtube_download()
-        
-#     elif choice == "Video To Audio":
-#         video2audio()
-        
     elif choice == "Linux Commands":
         alphabet_selector()
     elif choice == "Online Python Compiler":
         compiler_app()
     elif choice == "Password Generator":
         password_generator()
-    elif choice == "Video To GIF":
-        video2gif()
+    
 #     elif choice == "Speed Test":
 #         test_speed()
 if __name__ == "__main__":
