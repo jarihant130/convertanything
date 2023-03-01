@@ -71,8 +71,8 @@ def main():
     elif choice == "Youtube Video Downloader":
         youtube_download()
         
-    elif choice == "Video To Audio":
-        video2audio()
+#     elif choice == "Video To Audio":
+#         video2audio()
         
     elif choice == "Linux Commands":
         alphabet_selector()
