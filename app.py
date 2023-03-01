@@ -28,7 +28,7 @@ def main():
 #             "Word To PDF", #word2pdf.py
 #             "PDF To Word", #pdf2word.py
             "Youtube Video Downloader", #youtube_download.py
-            "Trim Video", #trim_video.py
+#             "Trim Video", #trim_video.py
             "Video To GIF", #video2gif.py
 #             "Video To Audio", #video2audio.py
            "Linux Commands", #linux_cmd.py
