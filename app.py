@@ -23,17 +23,17 @@ def main():
             "Image to Sketch", #image2sketch.py
             "Image To PDF" , #image_to_pdf.py
             "Rotate Image", #rotate_image.py
-            "Trim Video", #trim_video.py
             "Crop Image", #crop_image.py
             "Image Resizer", #image_resizer.py
 #             "Word To PDF", #word2pdf.py
 #             "PDF To Word", #pdf2word.py
             "Youtube Video Downloader", #youtube_download.py
+            "Trim Video", #trim_video.py
+            "Video To GIF", #video2gif.py
 #             "Video To Audio", #video2audio.py
            "Linux Commands", #linux_cmd.py
             "Online Python Compiler", #onlinePyCompiler.py
             "Password Generator", #password_generator.py
-            "Video To GIF", #video2gif.py
 #             "Speed Test", #speed_test.py
            ]
     choice = st.sidebar.selectbox("Select an option", menu)
