@@ -7,10 +7,11 @@ def home():
         st.write("Please select available options from the menu to get started.")
 
         # Load image from file
-        image = Image.open("convert_anything.jpg")
-
+#         image = Image.open("convert_anything.jpg")
         # Display image on Streamlit app
-        st.image(image, caption="Convert Anything")
+#         st.image(image, caption="Convert Anything")
+        # Play video on Streamlit app
+        st.video("convert_anything.mp4", format = "video/mp4", start_time = 0)
     except Exception as e:
         st.error(f"Error: {e}")
 
