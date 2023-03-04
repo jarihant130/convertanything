@@ -13,9 +13,16 @@ def trim_video():
     video_file = st.file_uploader("Upload a video", type=["mp4"])
     
     if video_file:
+        video_bytes = video_file.read()
+
+        # Save the video file to a temporary file
+        with tempfile.NamedTemporaryFile(suffix=".mp4", delete=False) as f:
+            f.write(video_bytes)
+            file_path = f.name
+        
         # Load the video file
-        video = VideoFileClip(video_file.name)
-        st.video(video_file.name)
+        video = VideoFileClip(file_path)
+        st.video(video_bytes, format = "video/mp4", start_time = 0)
             
         # Get the start and end times for the trim
         start_time = st.slider("Start time (in seconds)", 0, int(video.duration))
@@ -28,16 +35,16 @@ def trim_video():
             output_filename = st.text_input("Enter the desired output filename", value="trimmed.mp4")
             
             # Download the trimmed video as a file
-            with st.spinner("Downloading video..."):
+            with st.spinner("Trimming video..."):
                 # Create a temporary file to save the trimmed video
                 with tempfile.NamedTemporaryFile(suffix=".mp4", delete=False) as f:
                     file_path = f.name
-                    trimmed_video.write_videofile(file_path)
+                    trimmed_video.write_videofile(file_path, codec="libx264", audio=True)
 
                 # Display the trimmed video
                 with open(file_path, "rb") as f:
                     video_bytes = f.read()
-                    st.video(video_bytes)
+                    st.video(video_bytes, format="video/mp4", start_time=0)
 
             # Add a button to download the trimmed video
             st.download_button(
@@ -50,9 +57,6 @@ def trim_video():
             st.error(f"Error: {e}")
     else:
         st.warning("Please upload the video file to trim!!")
+
 if __name__ == '__main__':
     trim_video()
-
-
-
-
