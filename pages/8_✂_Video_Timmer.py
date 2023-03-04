@@ -1,6 +1,7 @@
 import streamlit as st
 from moviepy.video.io.VideoFileClip import VideoFileClip
 import tempfile
+import os
 
 def trim_video():
     st.set_page_config(page_title="Video Trimmer!!", page_icon=":scissors:", layout="wide")
@@ -53,6 +54,10 @@ def trim_video():
                 file_name=output_filename,
                 mime="video/mp4"
             )
+            # Remove the temporary file
+            os.unlink(file_path)
+            st.write(file_path)
+            
         except Exception as e:
             st.error(f"Error: {e}")
     else:
