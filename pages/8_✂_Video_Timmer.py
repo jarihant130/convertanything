@@ -56,7 +56,6 @@ def trim_video():
             )
             # Remove the temporary file
             os.unlink(file_path)
-            st.write(file_path)
             
         except Exception as e:
             st.error(f"Error: {e}")
