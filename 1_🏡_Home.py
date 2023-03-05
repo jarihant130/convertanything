@@ -12,6 +12,10 @@ def home():
 #         st.image(image, caption="Convert Anything")
         # Play video on Streamlit app
         st.video("convert_anything.mp4", format = "video/mp4", start_time = 0)
+        st.markdown('''
+---
+Made with ❤️ by Arihant Jain ([Study Material](https://www.youtube.com/channel/UCeC088dyJsXK_L1bCHZDcjA))
+''')
     except Exception as e:
         st.error(f"Error: {e}")
 
