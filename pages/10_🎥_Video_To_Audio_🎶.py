@@ -1,33 +1,3 @@
-# import streamlit as st
-# import tempfile
-# import os
-# from moviepy.video.io.VideoFileClip import VideoFileClip
-# from pydub import AudioSegment
-
-# def video2audio():
-#     try:
-#         st.title("Convert Video To Audio!!")
-#         video_file = st.file_uploader("Upload a video", type=["mp4", "mov"])
-#         if video_file is not None:
-#             with tempfile.NamedTemporaryFile(delete=False) as tmp_file:
-#                 tmp_file.write(video_file.read())
-#                 video_clip = VideoFileClip(tmp_file.name)
-#                 audio_clip = video_clip.audio
-#                 audio_file = os.path.abspath("{tmp_file.name[:-4]}.mp3")
-#                 audio_clip.write_audiofile(audio_file)
-#                 file_path = open(audio_file, "rb")
-#                 audio_bytes = file_path.read()
-#                 st.audio(audio_bytes, format="audio/mp3")
-
-#                 # check if user downloaded the file
-#                 if st.session_state.get("audio_downloaded", False):
-#                     os.remove(audio_file)  # delete temporary file
-#     except Exception as e:
-#         st.error(f"Error: {e}")
-
-# if __name__ == "__main__":
-#     video2audio()
-
 import streamlit as st
 import tempfile
 import os
@@ -59,7 +29,7 @@ The app deletes the temporary file after the user downloads the audio file.
                 audio_clip.write_audiofile(audio_file)
                 file_path = open(audio_file, "rb")
                 audio_bytes = file_path.read()
-                st.success("Your Audio file has been created successfully!")
+                st.success(f"Your Audio file has been created successfully! Please download your audio file by clicking on '\u22EE'")
                 st.audio(audio_bytes, format="audio/mp3")
                 
                 # check if user downloaded the file
