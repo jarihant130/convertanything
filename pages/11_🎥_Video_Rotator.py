@@ -27,7 +27,7 @@ def rotate_video():
         
         # Output file name
         output_filename = st.text_input("Enter the desired output filename", value="rotated.mp4")
-        rotate_angle = st.slider("Rotation angle (in degrees)", 0)
+        rotate_angle = st.slider("Rotation angle (in degrees)", -180, 180, 0)
         try:
             
             # Rotate the video clip by 0 degrees clockwise
@@ -61,7 +61,7 @@ def rotate_video():
         except Exception as e:
             st.error(f"Error: {e}")
     else:
-        st.warning("Please upload the video file to trim!!")
+        st.warning("Please upload the video file to rotate!!")
 
 if __name__ == '__main__':
     rotate_video()
