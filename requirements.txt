@@ -11,3 +11,4 @@ pytube
 img2pdf
 pydub
 speedtest-cli
+ffmpeg-downloader
