@@ -143,7 +143,7 @@ $ jobs
 # Define a function to display the commands for a given alphabet page
 def display(page):
     with st.expander(f"Linux Commands - {page}"):
-        st.write("### Commands:")
+#         st.write("### Commands:")
         if page in commands:
             for command, example in commands[page].items():
                 st.write(f"#### `{command}`")
