@@ -142,17 +142,15 @@ $ jobs
 
 # Define a function to display the commands for a given alphabet page
 def display(page):
-    st.write(f"## Linux Commands - {page}")
-    st.write("---")
-    st.write("### Commands:")
-    if page in commands:
-        for command, example in commands[page].items():
-            st.write(f"#### `{command}`")
-            st.code(example)
-            st.write("---")
-    else:
-        st.write("No commands found for this letter.")
-    
+    with st.expander(f"Linux Commands - {page}"):
+        st.write("### Commands:")
+        if page in commands:
+            for command, example in commands[page].items():
+                st.write(f"#### `{command}`")
+                st.code(example)
+        else:
+            st.write("No commands found for this letter.")
+
 # Define a function to display buttons for selecting an alphabet page
 def alphabet_selector():
     st.write("## Select an alphabet:")
@@ -166,8 +164,8 @@ def alphabet_selector():
     """
     for letter in string.ascii_uppercase:
         if letter in commands:
-            if st.button(letter, key=letter):
-                display(letter)
+            # if st.button(letter, key=letter):
+            display(letter)
             st.write(f'<style>.stButton#{letter} {{{button_style}}}</style>', unsafe_allow_html=True)
         else:
             st.write(letter)
