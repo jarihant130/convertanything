@@ -53,7 +53,8 @@ def password_generator():
     st.write("This is a simple application that helps you to create/generate best passwords using Python.")
     with st.expander('Password Options'):
         # Get user input
-        length = st.slider("Password Length", 6, 2048, 12, 1)
+#         length = st.slider("Password Length", 6, 2048, 12, 1)
+        length = st.number_input("Password Length", min_value=6, max_value=2048, value=6, step=1, label_visibility="visible")
         include_symbols = st.checkbox("Include Symbols (e.g. @#$%)")
         include_numbers = st.checkbox("Include Numbers (e.g. 1234567890)")
         include_lowercase = st.checkbox("Include Lowercase Characters (e.g. a-z)")
